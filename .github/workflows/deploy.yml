@@ -1,36 +1,13 @@
-name: Deploy Shopify Clone to Azure VM
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Upload ONLY public website files to Azure VM
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: |
-          ./index.html
-          ./images/**
-        target: "/var/www/html"
-        overwrite: true
-
-    - name: Restart Nginx on Azure VM
-      uses: appleboy/ssh-action@v0.1.7
-      with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          sudo systemctl restart nginx
-          echo "Deployment successful!"
+- name: Upload ONLY public website files to Azure VM
+  uses: appleboy/scp-action@v0.1.4
+  with:
+    host: ${{ secrets.VM_HOST }}
+    username: ${{ secrets.VM_USER }}
+    key: ${{ secrets.SSH_PRIVATE_KEY }}
+    source: |
+      index.html
+      images/*
+      assets/*.css
+      assets/*.js
+    target: "/var/www/html"
+    overwrite: true
