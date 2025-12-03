@@ -19,7 +19,12 @@ jobs:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "index.html,images,screenshots"
+          source: |
+            index.html
+            images/**
+            screenshots/**
+            *.css
+            *.js
           target: "/var/www/html"
           overwrite: true
 
