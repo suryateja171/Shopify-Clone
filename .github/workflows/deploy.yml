@@ -21,8 +21,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./*"
           target: "/var/www/html"
+          overwrite: true
 
-      - name: Restart Nginx
+      - name: Restart nginx on Azure VM
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.VM_HOST }}
@@ -30,3 +31,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo systemctl restart nginx
+            echo "Deployment completed successfully!"
