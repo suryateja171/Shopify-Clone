@@ -1,13 +1,9 @@
 - name: Upload ONLY public website files to Azure VM
   uses: appleboy/scp-action@v0.1.4
   with:
-    host: ${{ secrets.VM_HOST }}
-    username: ${{ secrets.VM_USER }}
-    key: ${{ secrets.SSH_PRIVATE_KEY }}
-    source: |
-      index.html
-      images/*
-      assets/*.css
-      assets/*.js
-    target: "/var/www/html"
-    overwrite: true
+      host: ${{ secrets.VM_HOST }}
+      username: ${{ secrets.VM_USER }}
+      key: ${{ secrets.SSH_PRIVATE_KEY }}
+      source: "./index.html"
+      target: "/var/www/html"
+      overwrite: true
