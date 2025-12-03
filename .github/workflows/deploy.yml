@@ -22,9 +22,6 @@ jobs:
         source: |
           ./index.html
           ./images/**
-          ./screenshots/**
-          ./assets/**/*.css
-          ./assets/**/*.js
         target: "/var/www/html"
         overwrite: true
 
@@ -37,5 +34,3 @@ jobs:
         script: |
           sudo systemctl restart nginx
           echo "Deployment successful!"
-
-
