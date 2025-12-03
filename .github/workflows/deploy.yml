@@ -37,3 +37,5 @@ jobs:
         script: |
           sudo systemctl restart nginx
           echo "Deployment successful!"
+
+
